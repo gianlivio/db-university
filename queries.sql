@@ -13,6 +13,8 @@ SELECT *
 FROM `students` 
 WHERE `date_of_birth` <= DATE_SUB(CURRENT_DATE(),INTERVAL 30 YEAR)
 
+-- WHERE date_of_birth <= DATE_SUB(CURRENT_DATE(), INTERVAL 30 YEAR): Solo le righe in cui la data di nascita (date_of_birth) è relativa a 30 anni prima o antecedente. CURRENT_DATE() restituisce la data odierna e DATE_SUB sottrae 30 anni da questa data.
+
 4. Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di
    laurea (286)
 SELECT * 
@@ -35,10 +37,13 @@ WHERE `level` = "magistrale"
 SELECT COUNT(`id`) AS `departments_number`
 FROM `departments` 
 
+-- SELECT COUNT(id) AS departments_number:  Conta il numero di righe (id) e lo chiama departments_number.
+
 8. Quanti sono gli insegnanti che non hanno un numero di telefono?
-SELECT * 
-FROM `teachers` 
-WHERE `phone` IS NOT NULL
+SELECT COUNT(*) AS `teachers_without_phone`
+FROM `teachers`
+WHERE `phone` IS NULL;
+
 
 9. Inserire nella tabella degli studenti un nuovo record con i propri dati (per il campo
    degree_id, inserire un valore casuale)
